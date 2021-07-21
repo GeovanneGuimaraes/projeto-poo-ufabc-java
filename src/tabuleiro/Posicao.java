@@ -5,6 +5,7 @@ public class Posicao {
 	private int coluna;
 	private int linha;
 	
+	//Construtor de Posicao
 	public Posicao(int coluna, int linha) {
 		this.coluna = coluna;
 		this.linha = linha;
