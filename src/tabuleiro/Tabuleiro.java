@@ -15,6 +15,16 @@ public class Tabuleiro {
 		pecas = new Peca[linhas][colunas];
 	}
 	
+	//Retorna a peça no tabuleiro
+	public Peca peca(int linha, int coluna) {
+		return this.pecas[linha][coluna];
+	}
+	
+	//Retorna a posição da peça no tabuleiro
+	public Peca peca(Posicao posicao) {
+		return pecas[posicao.getLinha()][posicao.getColuna()];
+	}
+	
 	// Get e Set do atributo coluna
 	public int getColunas() {
 		return colunas;
