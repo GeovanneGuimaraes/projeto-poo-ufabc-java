@@ -1,19 +1,19 @@
 package aplicacao;
 
+import jogo_de_xadrez.Jogo;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
-public class principal {
+public class Principal {
 
 	public static void main(String[] args) {
 		
-		//Testando a classe Posicao
-		Posicao posicao = new Posicao(2,  6);
-		System.out.println(posicao);
-		
-		//Testando a classe Tabuleiro
-		Tabuleiro tabuleiro = new Tabuleiro(8, 8);
+		//Testando o tabuleiro
+		Jogo xadrez = new Jogo();
+		interfaceJogo.mostraTabuleiro(xadrez.getPecas());
 
 	}
+	
+	
 
 }
