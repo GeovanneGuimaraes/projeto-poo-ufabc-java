@@ -6,6 +6,7 @@ import pecas.Peao;
 import pecas.Rainha;
 import pecas.Rei;
 import pecas.Torre;
+import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
@@ -13,7 +14,7 @@ public class Jogo {
 
 	private Tabuleiro tabuleiro;
 
-	// Construtor da classe Tabuleiro, onde � instaciado a dimens�o (8x8) de um
+	// Construtor da classe Tabuleiro, onde eh instaciado a dimensao (8x8) de um
 	// tabuleiro de xadrez
 	public Jogo() {
 		tabuleiro = new Tabuleiro(8, 8);
@@ -21,7 +22,7 @@ public class Jogo {
 	}
 
 	public PecaXadrez[][] getPecas() {
-		PecaXadrez[][] auxiliar = new PecaXadrez[8][8];
+		PecaXadrez[][] auxiliar = new PecaXadrez[tabuleiro.getLinhas()][tabuleiro.getColunas()];
 
 		// Percorrer a matriz "auxiliar"
 		int x = 0, y = 0;
@@ -36,6 +37,32 @@ public class Jogo {
 	//Coloca a peça nova de acordo com as posições originais do xadrez
 	public void pecaNova(char coluna, int linha, PecaXadrez peca) {
 		tabuleiro.colocaPeca(peca, new JogoPosicao(coluna, linha).irPosicao());
+	}
+	
+	
+	public void validarOrigemPos(Posicao posicao) {
+		if (!tabuleiro.temPeca(posicao)) {
+			throw new JogoExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
+		}
+		if(!tabuleiro.peca(posicao).existeMovimento()) {
+			throw new JogoExcecao("Nao existem movimentos possiveis");
+		}
+	}
+	
+	//Movendo as peças
+	public PecaXadrez moverPeca(JogoPosicao origemPos, JogoPosicao destinoPos) {
+		Posicao origem = origemPos.irPosicao();
+		Posicao destino = destinoPos.irPosicao();
+		validarOrigemPos(origem);
+		Peca pecaCapturada = movimentar(origem, destino);
+		return (PecaXadrez)pecaCapturada;
+	}
+	
+	public Peca movimentar(Posicao origem, Posicao destino) {
+		Peca peca = tabuleiro.removerPeca(origem);
+		Peca pecaCapturada = tabuleiro.removerPeca(destino);
+		tabuleiro.colocaPeca(peca, destino);
+		return pecaCapturada;
 	}
 	
 	// Posiciona as peças no tabuleiro
@@ -69,47 +96,43 @@ public class Jogo {
 		pecaNova('b', 1, cavaloP);
 		pecaNova('g', 1, cavaloP);
 		// Cavalos Brancos
-		pecaNova('b', 8, cavaloP);
-		pecaNova('b', 8, cavaloP);
+		pecaNova('b', 8, cavaloB);
+		pecaNova('g', 8, cavaloB);
 
-		// Bispos Pretos
-		tabuleiro.colocaPeca(bispoP, new Posicao(0, 2));
-		tabuleiro.colocaPeca(bispoP, new Posicao(0, 5));
-		// Bispos Brancos
-		tabuleiro.colocaPeca(bispoB, new Posicao(7, 2));
-		tabuleiro.colocaPeca(bispoB, new Posicao(7, 5));
+		// Peao Pretos
+		pecaNova('a', 2, peaoP);
+		pecaNova('b', 2, peaoP);
+		pecaNova('c', 2, peaoP);
+		pecaNova('d', 2, peaoP);
+		pecaNova('e', 2, peaoP);
+		pecaNova('f', 2, peaoP);
+		pecaNova('g', 2, peaoP);
+		pecaNova('h', 2, peaoP);
+		// Peaos Brancos
+		pecaNova('a', 7, peaoB);
+		pecaNova('b', 7, peaoB);
+		pecaNova('c', 7, peaoB);
+		pecaNova('d', 7, peaoB);
+		pecaNova('e', 7, peaoB);
+		pecaNova('f', 7, peaoB);
+		pecaNova('g', 7, peaoB);
+		pecaNova('h', 7, peaoB);
 
 		// Rei Preto
-		tabuleiro.colocaPeca(reiP, new Posicao(0, 4));
+		pecaNova('e', 1, reiP);
 		// Rei Branco
-		tabuleiro.colocaPeca(reiB, new Posicao(7, 4));
+		pecaNova('e', 8, reiB);
 
 		// Rainha Preta
-		tabuleiro.colocaPeca(rainhaP, new Posicao(0, 3));
+		pecaNova('d', 1, rainhaP);
 		// Rainha Branca
-		tabuleiro.colocaPeca(rainhaB, new Posicao(7, 3));
+		pecaNova('d', 8, rainhaB);
 		
 		//Bispos Pretos
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 0));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 1));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 2));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 3));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 4));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 5));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 6));
-		tabuleiro.colocaPeca(peaoP, new Posicao(1, 7));
-		
+		pecaNova('c', 1, bispoP);
+		pecaNova('f', 1, bispoP);
 		//Bispos Brancos
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 0));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 1));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 2));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 3));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 4));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 5));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 6));
-		tabuleiro.colocaPeca(peaoB, new Posicao(6, 7));
-		
-		
-
+		pecaNova('c', 8, bispoB);
+		pecaNova('f', 8, bispoB);
 	}
 }
