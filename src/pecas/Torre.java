@@ -13,6 +13,12 @@ public class Torre extends PecaXadrez{
 	
 	//Retorna "T" como torre no tabuleiro
 	public String toString() {
-		return "♜";
+		return "T";
+	}
+	
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return auxiliar;
 	}
 }

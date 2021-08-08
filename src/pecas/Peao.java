@@ -13,6 +13,12 @@ public class Peao extends PecaXadrez {
 	
 	//Retorna a peca Peao "P" 
 	public String toString() {
-		return "♟";
+		return "P";
+	}
+	
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return auxiliar;
 	}
 }

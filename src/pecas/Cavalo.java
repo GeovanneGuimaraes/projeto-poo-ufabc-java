@@ -13,7 +13,13 @@ public class Cavalo extends PecaXadrez{
 	
 	//Retorna "C" como Cavalo
 	public String toString() {
-		return "♞";
+		return "C";
+	}
+	
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return auxiliar;
 	}
 	
 	

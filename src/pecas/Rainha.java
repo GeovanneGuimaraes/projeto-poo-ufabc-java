@@ -13,7 +13,13 @@ public class Rainha extends PecaXadrez{
 	
 	//Retorna "Q" (Queen) como Rainha
 	public String toString() {
-		return "♕";
+		return "Q";
+	}
+	
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return auxiliar;
 	}
 	
 }

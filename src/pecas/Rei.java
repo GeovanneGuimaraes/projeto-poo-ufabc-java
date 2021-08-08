@@ -13,7 +13,13 @@ public class Rei extends PecaXadrez{
 	
 	//Retorna "R" como rei no tabuleiro
 	public String toString() {
-		return "♚";
+		return "R";
+	}
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+		return auxiliar;
 	}
 	
 }
