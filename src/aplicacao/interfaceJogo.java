@@ -1,6 +1,9 @@
 package aplicacao;
 
+import java.util.Scanner;
+
 import jogo_de_xadrez.CoresPecas;
+import jogo_de_xadrez.JogoPosicao;
 import jogo_de_xadrez.PecaXadrez;
 
 public class interfaceJogo {
@@ -77,6 +80,13 @@ public class interfaceJogo {
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
 	
+    //FONTE: https://qastack.com.br/programming/2979383/java-clear-the-console
+    //Limpar a tela para nao poluir o terminal
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
+    
 	public static void mostraPeca(PecaXadrez peca) {
 		// Verificar se há peça no tabuleiro, se nao tiver uma peça será colocada
 		if (peca == null) {
@@ -110,4 +120,12 @@ public class interfaceJogo {
 		System.out.println("_______________________");
 		System.out.println("    a b c d e f g h");
 	}
-}
+	
+	//Ler a posição
+	public static JogoPosicao lerJogoPosicao(Scanner teclado) {
+			String x = teclado.nextLine();
+			char coluna = x.charAt(0);
+			int linha = Integer.parseInt(x.substring(1));
+			return new JogoPosicao(coluna, linha);
+		}	
+	}
