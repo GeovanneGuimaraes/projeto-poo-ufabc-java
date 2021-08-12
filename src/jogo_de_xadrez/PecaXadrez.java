@@ -1,13 +1,14 @@
 package jogo_de_xadrez;
 
 import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
-public class PecaXadrez extends Peca {
+public abstract class PecaXadrez extends Peca {
 	
 	private CoresPecas cor;
 	
-	//Construtor da peça de xadrez
+	//Construtor da peca de xadrez
 	public PecaXadrez(Tabuleiro tabuleiro, CoresPecas cor) {
 		super(tabuleiro);
 		this.cor = cor;
@@ -22,6 +23,10 @@ public class PecaXadrez extends Peca {
 		return cor;
 	}
 	
+	public boolean temPecaAdversaria(Posicao posicao) {
+		PecaXadrez peca = (PecaXadrez)getTabuleiro().peca(posicao);
+		return peca != null && peca.getCor() != cor;
+	}
 	
 
 }
