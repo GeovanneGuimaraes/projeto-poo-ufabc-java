@@ -11,9 +11,8 @@ public class Tabuleiro {
 	//Construtor de Tabuleiro
 	public Tabuleiro(int linhas, int colunas) {
 		if(colunas < 1 || linhas < 1) {
-			throw new TabuleiroExcecao("Erro: Linha ou Coluna não podem ser vazios");
+			throw new TabuleiroExcecao("Erro: Linha ou Coluna nao podem ser vazios");
 		}
-		
 		this.colunas = colunas;
 		this.linhas = linhas;
 		pecas = new Peca[linhas][colunas];
@@ -22,7 +21,7 @@ public class Tabuleiro {
 	//Retorna a peca no tabuleiro
 	public Peca peca(int linha, int coluna) {
 		if(!temPosicao(linha, coluna)) {
-			throw new TabuleiroExcecao("Erro: Não existe a posição desejada no tabuleiro");
+			throw new TabuleiroExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
 		}
 		return this.pecas[linha][coluna];
 	}
@@ -30,7 +29,7 @@ public class Tabuleiro {
 	//Retorna a posição da pe�a no tabuleiro
 	public Peca peca(Posicao posicao) {
 		if(!temPosicao(posicao)) {
-			throw new TabuleiroExcecao("Erro: Não existe a posição desejada no tabuleiro");
+			throw new TabuleiroExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
@@ -56,13 +55,13 @@ public class Tabuleiro {
 	//Metodo que insere a peça no tabuleiro
 	public void colocaPeca(Peca peca, Posicao posicao) {
 		if (temPeca(posicao)) {
-			throw new TabuleiroExcecao("Erro: Já existe uma peça nesta posição");
+			throw new TabuleiroExcecao("Erro: Ja existe uma peca nesta posicao");
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
 	}
 	
-	//Validação se foi inserido uma possível válida
+	//Validação se foi inserido uma possivel valida
 	public boolean temPosicao(int linha, int coluna) {
 		boolean condicao = true;
 		if((linha >= 0) && (linha < linhas) && (coluna >= 0) && (coluna < colunas)) {
@@ -81,7 +80,7 @@ public class Tabuleiro {
 	//Verifica se existe uma peça nessa posição
 	public boolean temPeca(Posicao posicao) {
 		if(!temPosicao(posicao)) {
-			throw new TabuleiroExcecao("Erro: Não existe a posição desejada no tabuleiro");
+			throw new TabuleiroExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
 		}
 		
 		boolean condicao = true;
@@ -92,5 +91,23 @@ public class Tabuleiro {
 		}
 		return condicao;
 	}
+	
+	//Remover peça
+	public Peca removerPeca(Posicao posicao) {
+		if(!temPosicao(posicao)) {
+			throw new TabuleiroExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		Peca auxiliar = peca(posicao);
+		auxiliar.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return auxiliar;
+	}
+	
+	
+	
+	
 	
 }
