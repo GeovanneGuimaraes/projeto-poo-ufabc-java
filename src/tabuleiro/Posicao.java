@@ -6,7 +6,7 @@ public class Posicao {
 	private int linha;
 	
 	//Construtor de Posicao
-	public Posicao(int coluna, int linha) {
+	public Posicao(int linha, int coluna) {
 		this.coluna = coluna;
 		this.linha = linha;
 	}
@@ -28,6 +28,11 @@ public class Posicao {
 	
 	public void setLinha(int linha) {
 		this.linha = linha;
+	}
+	
+	public void setValores(int linha, int coluna) {
+		this.linha = linha;
+		this.coluna = coluna;
 	}
 	
 	// Mostrar a linha e coluna
