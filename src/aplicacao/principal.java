@@ -13,11 +13,11 @@ public class Principal {
 
 		Scanner teclado = new Scanner(System.in);
 		Jogo xadrez = new Jogo();
-
+		
 		// Testando o tabuleiro
 		while (true) {
 			try {
-				interfaceJogo.clearScreen();
+				//interfaceJogo.clearScreen();
 				interfaceJogo.mostraTabuleiro(xadrez.getPecas());
 				System.out.println("");
 				System.out.print("Origem: ");
