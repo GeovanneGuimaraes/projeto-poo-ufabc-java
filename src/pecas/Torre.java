@@ -2,6 +2,7 @@ package pecas;
 
 import jogo_de_xadrez.CoresPecas;
 import jogo_de_xadrez.PecaXadrez;
+
 import tabuleiro.Tabuleiro;
 
 public class Torre extends PecaXadrez{
@@ -14,11 +15,5 @@ public class Torre extends PecaXadrez{
 	//Retorna "T" como torre no tabuleiro
 	public String toString() {
 		return "T";
-	}
-	
-	@Override
-	public boolean[][] movimentosPossiveis() {
-		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
-		return auxiliar;
-	}
+	}	
 }
