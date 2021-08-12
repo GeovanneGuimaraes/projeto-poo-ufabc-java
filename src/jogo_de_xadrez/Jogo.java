@@ -44,10 +44,8 @@ public class Jogo {
 		if (!tabuleiro.temPeca(posicao)) {
 			throw new JogoExcecao("Erro: Nao existe a posicao desejada no tabuleiro");
 		}
-		if(!tabuleiro.peca(posicao).existeMovimento()) {
-			throw new JogoExcecao("Nao existem movimentos possiveis");
-		}
 	}
+	
 	
 	//Movendo as peças
 	public PecaXadrez moverPeca(JogoPosicao origemPos, JogoPosicao destinoPos) {
@@ -102,7 +100,7 @@ public class Jogo {
 		// Peao Pretos
 		pecaNova('a', 2, peaoP);
 		pecaNova('b', 2, peaoP);
-		pecaNova('c', 2, peaoP);
+		pecaNova('c', 2, peaoP); 
 		pecaNova('d', 2, peaoP);
 		pecaNova('e', 2, peaoP);
 		pecaNova('f', 2, peaoP);
