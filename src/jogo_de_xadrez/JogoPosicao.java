@@ -38,12 +38,12 @@ public class JogoPosicao {
 		return new Posicao(8 - linha, coluna - 'a');
 	}
 	
-	public JogoPosicao voltarPosicao(Posicao posicao) {
+	public static JogoPosicao voltarPosicao(Posicao posicao) {
 		return new JogoPosicao((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());
 	}
 	
 	public String toString() {
-		return "( " + coluna + ", " + linha + ")";
+		return "" + coluna + linha;
 	}
 	
 }
