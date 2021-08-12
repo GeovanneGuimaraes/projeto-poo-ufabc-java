@@ -16,9 +16,4 @@ public class Bispo extends PecaXadrez {
 		return "B";
 	}
 	
-	@Override
-	public boolean[][] movimentosPossiveis() {
-		boolean[][] auxiliar = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
-		return auxiliar;
-	}
 }
